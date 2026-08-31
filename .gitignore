@@ -35,3 +35,6 @@ data/processed/
 
 # Outputs 
 outputs/nhd_streams_primary.geojson
+
+# Word
+~$*.docx
