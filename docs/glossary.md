@@ -2,7 +2,7 @@
 
 Terms used in the OLC Pine Ridge hydrology repository and notebooks.
 Terms are grouped by domain. Scientific jargon is defined in plain language
-suitable for community members who are not hydrologists.
+suitable for community members.
 
 ## Water Systems
 

@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "nhd_streams_primary",
+"name": "pine_ridge_context_streams",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "reachcode": "10120106008526", "gnis_name": null, "streamorde": 2, "lengthkm": 0.047 }, "geometry": { "type": "LineString", "coordinates": [ [ -103.363116616908428, 43.121128399730672 ], [ -103.363251482778665, 43.121139332697176 ], [ -103.363386416920861, 43.121166733296526 ], [ -103.363506282722483, 43.121188599869555 ], [ -103.363678617323217, 43.121227000277926 ] ] } },

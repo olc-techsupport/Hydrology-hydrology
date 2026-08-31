@@ -1,6 +1,6 @@
-"""Execute the ordered notebook series and keep committed notebooks clean."""
-
 from __future__ import annotations
+
+"""Execute the ordered notebook series and keep committed notebooks clean."""
 
 import argparse
 from pathlib import Path
