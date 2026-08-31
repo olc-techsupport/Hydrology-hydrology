@@ -32,13 +32,13 @@ All project scope is defined in [`config/config.yaml`](config/config.yaml), incl
 
 ## Notebook series
 
-1. `01_watershed_regional_context.ipynb` — land, watersheds, and monitoring context
-2. `02_groundwater_monitoring.ipynb` — groundwater systems and monitoring gaps
-3. `03_surface_water_reliability.ipynb` — White River and tributary flow reliability
-4. `04_water_quality_context.ipynb` — public water-quality monitoring context
-5. `05_drought_water_stress.ipynb` — drought history and water stress
-6. `06_compound_water_stress_index.ipynb` — screening-level compound indicator
-7. `07_climate_projections_water.ipynb` — climate projections and implications
+1. `01_watershed_regional_context.ipynb`: land, watersheds, and monitoring context
+2. `02_groundwater_monitoring.ipynb`: groundwater systems and monitoring gaps
+3. `03_surface_water_reliability.ipynb`: White River and tributary flow reliability
+4. `04_water_quality_context.ipynb`: public water-quality monitoring context
+5. `05_drought_water_stress.ipynb`: drought history and water stress
+6. `06_compound_water_stress_index.ipynb`: screening-level compound indicator
+7. `07_climate_projections_water.ipynb`: climate projections and implications
 
 The notebooks are ordered and may consume outputs produced by earlier notebooks.
 
