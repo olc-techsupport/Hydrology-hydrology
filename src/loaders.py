@@ -454,7 +454,9 @@ def load_nhd_flowlines(
     bbox             : (min_lon, min_lat, max_lon, max_lat)
     min_stream_order : Minimum Strahler stream order (1 = all streams)
     """
-    cache_key  = f"nhd_{bbox[0]:.2f}_{bbox[1]:.2f}_{bbox[2]:.2f}_{bbox[3]:.2f}_o{min_stream_order}.geojson"
+    # v2 distinguishes complete paginated downloads from the former single-page
+    # cache, which could silently contain only the service's first 2,000 rows.
+    cache_key  = f"nhd_{bbox[0]:.2f}_{bbox[1]:.2f}_{bbox[2]:.2f}_{bbox[3]:.2f}_o{min_stream_order}_v2.geojson"
     cache_file = CACHE_DIR / cache_key
 
     if cache_file.exists() and not force_refresh:
@@ -462,32 +464,94 @@ def load_nhd_flowlines(
 
     where = f"streamorde >= {min_stream_order}" if min_stream_order > 0 else "1=1"
 
-    r = requests.get(
-        NHD_FLOWLINE_URL,
-        params={
-            "where":          where,
-            "outFields":      "reachcode,gnis_name,streamorde,lengthkm",
-            "f":              "geojson",
-            "returnGeometry": "true",
-            "outSR":          "4326",
-            "geometry":       f"{bbox[0]},{bbox[1]},{bbox[2]},{bbox[3]}",
-            "geometryType":   "esriGeometryEnvelope",
-            "spatialRel":     "esriSpatialRelIntersects",
-            "inSR":           "4326",
-        },
-        timeout=120,
-    )
+    base_params = {
+        "where":          where,
+        "outFields":      "objectid,permanent_identifier,reachcode,gnis_name,streamorde,lengthkm",
+        "f":              "geojson",
+        "returnGeometry": "true",
+        "outSR":          "4326",
+        "geometryType":   "esriGeometryEnvelope",
+        "spatialRel":     "esriSpatialRelIntersects",
+        "inSR":           "4326",
+        "orderByFields":  "objectid ASC",
+    }
+    page_size = 2_000
+    features: list[dict] = []
+    # Smaller spatial queries are materially faster and less prone to National
+    # Map service timeouts. Features crossing tile edges are de-duplicated below.
+    tiles = _bbox_tiles(bbox, max_span_degrees=0.5)
+    for tile_number, tile in enumerate(tiles, start=1):
+        offset = 0
+        seen_page_signatures: set[tuple[object, object, int]] = set()
+        while True:
+            response = requests.get(
+                NHD_FLOWLINE_URL,
+                params={
+                    **base_params,
+                    "geometry": ",".join(map(str, tile)),
+                    "resultOffset": offset,
+                    "resultRecordCount": page_size,
+                },
+                timeout=120,
+            )
 
-    # 500 = no data in area (i.e. no perennial streams mapped)
-    if r.status_code == 500:
-        log.info("NHD returned 500 for bbox %s likely no mapped streams", bbox)
+            # Some ArcGIS layers return 500 for an empty initial spatial query.
+            if response.status_code == 500 and offset == 0:
+                log.info("NHD tile %d/%d returned no features", tile_number, len(tiles))
+                break
+            response.raise_for_status()
+
+            payload = response.json()
+            if payload.get("error"):
+                raise RuntimeError(f"NHD ArcGIS error: {payload['error']}")
+            page = payload.get("features", [])
+            if not page:
+                break
+
+            signature = (
+                page[0].get("id"),
+                page[-1].get("id"),
+                len(page),
+            )
+            if signature in seen_page_signatures:
+                raise RuntimeError(
+                    "NHD pagination returned a repeated page; refusing to cache a partial result"
+                )
+            seen_page_signatures.add(signature)
+            features.extend(page)
+            log.info(
+                "NHD tile %d/%d: received %d features at offset %d",
+                tile_number, len(tiles), len(page), offset,
+            )
+
+            exceeded = bool(
+                payload.get("exceededTransferLimit")
+                or payload.get("properties", {}).get("exceededTransferLimit")
+            )
+            offset += len(page)
+            # A short page is complete. For an exact 2,000-row page without an
+            # explicit transfer flag, request one more page rather than assuming.
+            if len(page) < page_size and not exceeded:
+                break
+
+    if not features:
         return gpd.GeoDataFrame()
 
-    r.raise_for_status()
+    # ArcGIS feature IDs/object IDs are unique; de-duplicate only on those IDs.
+    # A reachcode may legitimately correspond to more than one flowline feature.
+    unique_features: list[dict] = []
+    seen_ids: set[object] = set()
+    for feature in features:
+        properties = feature.get("properties", {})
+        feature_id = feature.get("id", properties.get("objectid"))
+        if feature_id is not None and feature_id in seen_ids:
+            continue
+        if feature_id is not None:
+            seen_ids.add(feature_id)
+        unique_features.append(feature)
 
-    gdf = gpd.read_file(io.BytesIO(r.content))
+    gdf = gpd.GeoDataFrame.from_features(unique_features, crs=CRS_GEOGRAPHIC)
     if not gdf.empty:
-        gdf = gdf.set_crs(CRS_GEOGRAPHIC, allow_override=True)
         gdf.to_file(cache_file, driver="GeoJSON")
 
     return gdf
