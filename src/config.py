@@ -1,6 +1,6 @@
-"""Validated access to the OLC Pine Ridge project configuration."""
-
 from __future__ import annotations
+
+"""Validated access to the OLC Pine Ridge project configuration."""
 
 from functools import lru_cache
 from pathlib import Path
@@ -9,7 +9,7 @@ from typing import Any
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = REPO_ROOT / "config" / "config.yaml"
+CONFIG_PATH = REPO_ROOT/"config"/"config.yaml"
 
 
 @lru_cache(maxsize=1)

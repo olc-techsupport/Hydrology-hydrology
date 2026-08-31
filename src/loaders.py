@@ -694,9 +694,9 @@ def load_tribal_groundwater(
     if path is None:
         # Try common locations
         candidates = [
-            RAW_DIR / "groundwater.csv",
-            RAW_DIR / "groundwater.xlsx",
-            RAW_DIR / "groundwater_master.xlsx",
+            RAW_DIR/"groundwater.csv",
+            RAW_DIR/"groundwater.xlsx",
+            RAW_DIR/"groundwater_master.xlsx",
         ]
         path = next((p for p in candidates if p.exists()), None)
 
