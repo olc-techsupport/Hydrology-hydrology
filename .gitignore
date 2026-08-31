@@ -35,6 +35,7 @@ data/processed/
 
 # Outputs 
 outputs/nhd_streams_primary.geojson
+outputs/pine_ridge_context_streams.geojson
 
 # Word
 ~$*.docx
