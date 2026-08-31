@@ -1,0 +1,5 @@
+slope,slope_per_decade,p_value,significant,direction,site_no,site_name,nation,n_years
+-0.0934,-0.934,0.0,True,Rising/Stable,430154100411801,"35N29W 2DDDD RST GW WELL M-10 NR OLSONVILLE, SD",Sicangu Lakota (Rosebud),43
+-0.084,-0.84,0.0,True,Rising/Stable,430258100471401,"36N30W36DDDA (RST GW WELL RB-8 NR ST.FRANCIS, SD)",Sicangu Lakota (Rosebud),42
+-0.093462,-0.9346,0.09,False,Rising/Stable,430314100372001,36N28W33BDDB (RST well R-19 near Olsonville SD),Sicangu Lakota (Rosebud),15
+-0.008333,-0.0833,0.82,False,Rising/Stable,430415100451501,"36N29W29ABDD RST GW WELL R-7 NR ST.FRANCIS, SD",Sicangu Lakota (Rosebud),15

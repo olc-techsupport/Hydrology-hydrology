@@ -1,0 +1,86 @@
+Live Coding Ideas
+
+Instead of showing finished code, intentionally break it and fix it together.
+
+Example 1
+
+Delete the input CSV.
+
+Watch it crash.
+
+Fix it.
+
+Example 2
+
+Download a file.
+
+Run notebook twice.
+
+Notice duplicate download.
+
+Add caching.
+
+Example 3
+
+Give wrong function input.
+
+Crash.
+
+Add validation.
+
+Example 4
+
+API unavailable.
+
+Handle exception.
+
+Example 5
+
+Output folder missing.
+
+Create automatically.
+
+Students love seeing these because they're exactly the kinds of issues they encounter in their own projects.
+
+Examples Worth Showing
+Checking files
+from pathlib import Path
+
+if not Path(filename).exists():
+    raise FileNotFoundError(f"{filename} does not exist.")
+Making folders
+Path("data").mkdir(exist_ok=True)
+Checking dataframe
+if df.empty:
+    raise ValueError("Dataset is empty.")
+Checking columns
+required = ["latitude", "longitude"]
+
+missing = [c for c in required if c not in df.columns]
+
+if missing:
+    raise ValueError(...)
+Checking values
+if (df["precipitation"] < 0).any():
+    print("Warning: negative precipitation values found.")
+Assertions
+assert len(train) > 0
+Logging instead of print
+
+Show the difference.
+
+print("Downloading...")
+
+vs.
+
+logging.info("Downloading Daymet data...")
+
+Explain that logging can be turned on or off and provides timestamps and severity levels, making it much more useful for debugging and sharing workflows.
+
+Closing Thought
+
+I would end with a slide that reinforces the broader goal of the assignment:
+
+Good code produces the right answer.
+
+Great code produces the right answer, explains what it's doing, detects when something is wrong, and helps the next person understand how to fix it.

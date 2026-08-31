@@ -1,0 +1,211 @@
+# tribal_water_monitoring configuration
+
+# All configurable parameters live here.
+# To adapt this system for a different Tribal Nation:
+#   1. Update usgs_streamflow_sites with gauges near your territory
+#   2. Update bounding_box for your region
+#   3. Update thresholds in consultation with water office staff
+
+# Tribal context 
+nation:
+  primary:    "Oglala Lakota"
+  secondary:  "Sicangu Lakota"
+  collective: "Oceti Sakowin"
+
+# Bounding box (WGS84: west, south, east, north)
+# Covers Pine Ridge, Rosebud and surrounding Oceti Sakowin territory
+bounding_box:
+  west:  -104.5
+  south:   42.3
+  east:   -96.4
+  north:   46.5
+
+# USGS NWIS streamflow gauge sites
+# All Pine Ridge and Rosebud gauges from constants.py
+# Find additional gauges at: https://waterdata.usgs.gov/nwis
+usgs_streamflow_sites:
+  - "06463900"   # Antelope CR Near Mission SD (Rosebud)
+  - "06449500"   # Little White River Near Rosebud SD (Rosebud)
+  - "06464100"   # Keya Paha River Near Keyapaha SD (Rosebud)
+  - "06464500"   # Keya Paha River at Wewela SD (Rosebud)
+  - "06450500"   # Little White River Below White River SD (Rosebud)
+  - "06447230"   # Black Pipe Creek Near Belvidere SD (Rosebud)
+  - "06447450"   # White River Near White River SD (Rosebud)
+  - "06445685"   # White River Near NE-SD State Line (Pine Ridge)
+  - "06446000"   # White River Near Oglala SD (Pine Ridge)
+  - "06446700"   # Bear In The Lodge Creek Near Wanblee SD (Pine Ridge)
+  - "06446500"   # White River Near Interior SD (Pine Ridge)
+  - "06447000"   # White River Near Kadoka SD (Pine Ridge)
+  - "06447500"   # Little White River Near Martin SD (Pine Ridge)
+  - "06449100"   # Little White River Near Vetal SD (Pine Ridge)
+  - "06449000"   # Lake Creek Below Refuge Near Tuthill SD (Pine Ridge)
+
+# USGS NWIS groundwater well sites
+# Sparse coverage on Tribal lands: see docs/data_sovereignty.md
+# Run notebook 02 to discover available wells in the bounding box
+usgs_groundwater_sites:
+   # PINE RIDGE: Oglala Lakota/Bennett/Jackson
+  - "432731102261101"
+  - "432301102574701"
+  - "425957102193601"
+  - "431948102331201"
+  - "432457102191001"
+  - "431503102285701"
+  - "430947102170301"
+  - "431002102343001"
+  - "432115102245801"
+  - "431643102401701"
+
+  # Bennett County
+  - "430558101585401"
+  - "431022101472901"
+  - "430836101554101"
+  - "431356101432701"
+  - "430921101365501"
+
+  # Jackson County
+  - "434129101590701"
+  - "433522101513401"
+  - "434352101445201"
+  - "433814101563801"
+
+  # ROSEBUD: Todd/Mellette/Gregory/Tripp/Lyman
+  
+  # Todd County
+  - "430148100471001"
+  - "430701100363001"
+  - "431121100594001"
+  - "430533100245201"
+  - "431342100442301"
+  - "430917100305601"
+  - "431514100522101"
+  - "430355100584401"
+
+  # Mellette County
+  - "432028101094001"
+  - "431812101203301"
+  - "432144101325801"
+  - "431503101175201"
+  - "432357101142001"
+
+  # Gregory County
+  - "431755099254801"
+  - "431248099360701"
+  - "430932099194401"
+  - "431617099475101"
+  - "430841099521001"
+
+  # Tripp County
+  - "432503099522401"
+  - "432219099375001"
+  - "432841099301901"
+  - "431958099585301"
+  - "432655099444701"
+
+  # Lyman County (adjacent/overlap context)
+  - "435027099224601"
+  - "434551099114901"
+  - "434239099335001"
+
+# USGS NWIS water quality sites
+usgs_wq_sites:
+  # White River Basin / Pine Ridge Region
+  - "06447000"         # White River near Kadoka SD
+  - "06446500"         # White River near Interior SD
+  - "06447500"         # White River near Oacoma SD
+  - "06445685"         # White River above White River SD
+  - "06444990"         # White River below Cottonwood SD
+
+  # Pine Ridge/Reservation-area tributaries
+  - "431215102335101"  # Reservation-area monitoring site
+  - "431948102331201"  # NWIS groundwater/wq capable site
+  - "432301102574701"  # Pine Ridge monitoring well
+  - "425957102193601"  # Pine Ridge monitoring well
+
+  # Rosebud Reservation Region
+  - "06449500"         # Little White River near Rosebud SD
+  - "06449400"         # Rosebud Creek at Rosebud SD
+  - "431602100535300" # Little White R at Ghost Hawk Park nr Rosebud
+  - "431605100535600" # Little White R @ Ghost Hawk Park nr Rosebud
+  - "431428100565800" # Little White R at Two Strike Bridge nr Rosebud
+  - "431600100533600" # Rosebud Creek at LWR confluence below Rosebud
+
+  # Todd County / Rosebud-area additional monitoring
+  - "430148100471001"
+  - "430701100363001"
+  - "431121100594001"
+  - "430533100245201"
+
+  # Regional Context Sites
+  # Useful for watershed-scale comparisons
+  - "06452000"         # Keya Paha River near Wewela SD
+  - "06453000"         # Keya Paha River near Hidden Timber SD
+  - "06455500"         # Niobrara River near Verdel NE
+
+# Analysis period
+analysis:
+  start_year:        2000
+  end_year:          2024
+  base_period_start: 2000
+  base_period_end:   2020
+
+# Drought/streamflow thresholds 
+# Review and confirm with Tribal water staff for each specific gauge
+# Units: cfs (cubic feet per second)
+thresholds:
+  streamflow:
+    normal_cfs:    50
+    watch_cfs:     20
+    emergency_cfs:  5
+
+  groundwater:
+    decline_rate_ft_per_month: 0.5
+    critical_pct:              10
+    recovery_pct:              90
+
+  water_quality:
+    nitrate_mgl:    10.0    # EPA MCL
+    arsenic_ugl:    10.0    # EPA MCL
+    tds_mgl:       500.0    # EPA secondary standard
+    ph_min:          6.5
+    ph_max:          8.5
+    turbidity_ntu:   1.0    # drinking water standard
+    fluoride_mgl:    4.0    # EPA MCL
+
+  drought:
+    moderate: -2.0    # PDSI <= -2.0
+    severe:   -3.0    # PDSI <= -3.0
+    extreme:  -4.0    # PDSI <= -4.0
+
+# Compound Water Stress Index weights (notebook 06)
+# Must sum to 1.0
+stress_index_weights:
+  groundwater: 0.40
+  streamflow:  0.30
+  drought:     0.30
+
+# Pipeline data paths
+paths:
+  raw:       data/raw
+  cache:     data/cache
+  processed: data/processed
+  templates: data/templates
+  outputs:   outputs
+  figures:   outputs/figures
+
+# Dashboard settings
+dashboard:
+  title:      "Tribal Water Monitoring"
+  center_lat:  43.3
+  center_lon: -102.5
+  zoom:         8
+  map_style:  "light"
+
+# Data sovereignty
+governance:
+  ocap:      "https://fnigc.ca/ocap-training/"
+  care:      "https://www.gida-global.org/care"
+  fair:      "https://www.go-fair.org/fair-principles/"
+  ieee_2890: "https://standards.ieee.org/ieee/2890/10318/"
+
+
