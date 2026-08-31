@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 """
-indicators.py shared indicator computation functions for tribal_water_monitoring.
+Shared indicator functions for the OLC Pine Ridge hydrology series.
 
 All indicator functions follow the same pattern:
   - Accept a DataFrame or Series
@@ -15,7 +15,7 @@ Used in both analysis notebooks and the operations pipeline.
 import warnings
 import numpy as np
 import pandas as pd
-from scipy import stats
+from math import erfc, sqrt
 
 
 # Groundwater indicators
@@ -335,7 +335,11 @@ def theilsen_trend(
     years:  np.ndarray,
 ) -> dict:
     """
-    Compute Theil-Sen slope and Mann-Kendall p-value for an annual time series.
+    Compute a Theil-Sen slope and approximate Mann-Kendall p-value.
+
+    The implementation is NumPy-only so the screening workflow does not depend
+    on platform-specific compiled statistics routines. The normal approximation
+    does not apply a tie correction; treat the p-value as descriptive.
 
     Returns
     Dict with: slope, slope_per_decade, p_value, significant, direction
@@ -353,8 +357,27 @@ def theilsen_trend(
             "direction":        "Insufficient data",
         }
 
-    slope, _, _, _ = stats.theilslopes(vals, yrs)
-    _, _, _, p, _  = stats.linregress(yrs, vals)
+    slopes = [
+        (vals[j] - vals[i]) / (yrs[j] - yrs[i])
+        for i in range(len(vals) - 1)
+        for j in range(i + 1, len(vals))
+        if yrs[j] != yrs[i]
+    ]
+    slope = float(np.median(slopes)) if slopes else np.nan
+
+    s_stat = sum(
+        np.sign(vals[j] - vals[i])
+        for i in range(len(vals) - 1)
+        for j in range(i + 1, len(vals))
+    )
+    variance = len(vals) * (len(vals) - 1) * (2 * len(vals) + 5) / 18
+    if s_stat > 0:
+        z_score = (s_stat - 1) / sqrt(variance)
+    elif s_stat < 0:
+        z_score = (s_stat + 1) / sqrt(variance)
+    else:
+        z_score = 0.0
+    p = erfc(abs(z_score) / sqrt(2))
 
     return {
         "slope":            round(slope, 6),

@@ -1,29 +1,4 @@
 division,nation,year,mean_pdsi,min_pdsi,months_drought,months_severe
-6,Rosebud (Sicangu Lakota),2000,2.6216666666666666,0.7,0,0
-6,Rosebud (Sicangu Lakota),2001,0.8516666666666667,-0.76,0,0
-6,Rosebud (Sicangu Lakota),2002,-2.335,-4.14,8,3
-6,Rosebud (Sicangu Lakota),2003,-2.1075,-2.79,7,0
-6,Rosebud (Sicangu Lakota),2004,0.28083333333333327,-2.65,3,0
-6,Rosebud (Sicangu Lakota),2005,0.5775,-0.98,0,0
-6,Rosebud (Sicangu Lakota),2006,-0.8166666666666668,-4.87,3,2
-6,Rosebud (Sicangu Lakota),2007,0.555,-0.93,0,0
-6,Rosebud (Sicangu Lakota),2008,2.091666666666667,-0.67,0,0
-6,Rosebud (Sicangu Lakota),2009,4.88,3.45,0,0
-6,Rosebud (Sicangu Lakota),2010,6.8425,5.62,0,0
-6,Rosebud (Sicangu Lakota),2011,7.315,5.95,0,0
-6,Rosebud (Sicangu Lakota),2012,-1.0516666666666667,-4.24,5,4
-6,Rosebud (Sicangu Lakota),2013,2.544166666666667,-0.52,0,0
-6,Rosebud (Sicangu Lakota),2014,5.09,4.42,0,0
-6,Rosebud (Sicangu Lakota),2015,2.8083333333333336,0.65,0,0
-6,Rosebud (Sicangu Lakota),2016,2.3833333333333333,1.24,0,0
-6,Rosebud (Sicangu Lakota),2017,-0.46666666666666673,-2.88,2,0
-6,Rosebud (Sicangu Lakota),2018,0.5816666666666667,-0.86,0,0
-6,Rosebud (Sicangu Lakota),2019,5.95,1.55,0,0
-6,Rosebud (Sicangu Lakota),2020,5.935,-0.46,0,0
-6,Rosebud (Sicangu Lakota),2021,-0.8266666666666667,-3.26,2,2
-6,Rosebud (Sicangu Lakota),2022,-0.6958333333333333,-1.57,0,0
-6,Rosebud (Sicangu Lakota),2023,1.9083333333333332,0.74,0,0
-6,Rosebud (Sicangu Lakota),2024,3.1908333333333334,2.31,0,0
 7,Pine Ridge (Oglala Lakota),2000,-1.0933333333333333,-2.05,2,0
 7,Pine Ridge (Oglala Lakota),2001,1.6241666666666665,-0.93,0,0
 7,Pine Ridge (Oglala Lakota),2002,-1.6975,-3.06,3,1

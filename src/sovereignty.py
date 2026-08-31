@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 """
-sovereignty.py data governance acknowledgment for tribal_water_monitoring.
+Draft data-governance acknowledgment for the OLC Pine Ridge hydrology series.
 Prints governance framework acknowledgment at the start
 of each notebook and generates citations for outputs.
 
-Frameworks implemented:
-    OCAP®         : Ownership, Control, Access, Possession
+Frameworks referenced pending OST RRB and OLC IRB review:
     CARE          : Collective Benefit, Authority to Control, Responsibility, Ethics
     FAIR          : Findable, Accessible, Interoperable, Reusable
     IEEE 2890-2025 : Recommended Practice for Provenance of Indigenous Peoples' Data
@@ -20,15 +19,16 @@ from src.constants import GOVERNANCE_REFS
 _PREAMBLE = """
 TRIBAL WATER MONITORING DATA GOVERNANCE ACKNOWLEDGMENT
 
-This analysis uses data that describes the lands, waters, and communities
-of the Oceti Sakowin (the seven council fires of the Lakota, Dakota, and
-Nakota peoples). This data is governed by the following frameworks:
+This analysis uses public data that describes the lands and waters of the
+Pine Ridge Reservation and Oglala Lakota communities. This draft statement
+has not been approved by the OST Research Review Board or OLC Institutional
+Review Board.
 
-OCAP®  : The Oceti Sakowin and all Tribal Nations have the right to
-  Ownership, Control, Access, and Possession of data about their lands
-  and communities. Federal monitoring data covering Tribal territories
-  does not transfer that authority to federal agencies or researchers.
-  Reference: https://fnigc.ca/ocap-training/
+INTERIM REVIEW CONTACT
+  Camille Griffith, PhD, Director, OST RRB and OLC IRB
+  cgriffith@olc.edu
+
+  Listing the contact does not indicate approval of this analysis.
 
 CARE   : Data use must deliver Collective Benefit to Indigenous peoples,
   respect their Authority to Control, uphold Responsibility to communities,
@@ -36,8 +36,8 @@ CARE   : Data use must deliver Collective Benefit to Indigenous peoples,
   Reference: https://www.gida-global.org/care
 
 FAIR   : Data is Findable, Accessible, Interoperable, and Reusable.
-  FAIR governs technical standards; CARE and OCAP® govern the ethical
-  obligations to Tribal Nations that FAIR alone does not address.
+  FAIR governs technical standards; CARE addresses responsibilities that
+  FAIR alone does not address.
   Reference: https://www.go-fair.org/fair-principles/
 
 IEEE 2890-2025 : Recommended Practice for Provenance of Indigenous Peoples' Data.
@@ -52,12 +52,15 @@ CRITICAL DISTINCTION IN THIS SERIES:
   PUBLIC DATA   : federal/public datasets (USGS NWIS, NOAA, Census, NHD)
                   used in analysis notebooks. Freely available but still
                   describing Tribal lands. Results should be shared with
-                  the relevant Tribal Nation before publication.
+                  OST/OLC reviewers before publication.
 
-  TRIBAL DATA   : Tribal-collected operational data (well levels, water
-                  quality samples) stored in data/raw/. Governed by OCAP®.
-                  Never committed to version control. Stays under Tribal
-                  control.
+  OST DATA      : No OST-collected operational dataset is included in this
+                  repository. Such data requires an approved governance,
+                  storage, access, and publication process before use.
+
+DEFERRED REVIEW
+  Specific OST RRB/OLC IRB wording, preferred terminology, and the local
+  applicability of OCAP® remain open review items.
 """
 
 # Data source registry
@@ -158,8 +161,7 @@ _DATA_SOURCES = {
         "steward": "Tribal Nation Water Resources Program",
         "license": "Tribal governance: CARE applies",
         "note":    (
-            "This data is owned and controlled by the Tribal Nation that "
-            "collected it. Governed by OCAP® and CARE. See docs/data_sovereignty.md."
+            "No OST operational data is included. See docs/data_sovereignty.md."
         ),
     },
 }
@@ -225,7 +227,7 @@ def generate_citations(source_keys: list[str]) -> str:
             lines.append(f"  {src['citation']}")
         lines.append(f"  Steward: {src['steward']} | License: {src['license']}")
     lines.append(
-        "\nData governance: OCAP® | CARE | FAIR | IEEE 2890-2025"
+        "\nDraft data governance references: CARE | FAIR | IEEE 2890-2025"
     )
     for name, url in GOVERNANCE_REFS.items():
         lines.append(f"  {name.upper()}: {url}")

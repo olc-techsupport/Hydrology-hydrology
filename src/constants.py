@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 """
-constants.py project-wide constants for tribal_water_monitoring.
+Stable technical constants for the OLC Pine Ridge hydrology series.
 
-All values that change when adapting for a different Nation live in
-config/config.yaml. Constants here are technically stable values:
-CRS definitions, URL bases, field name standards, and shared references.
+Project scope, sites, dates, thresholds, and institutional language live in
+config/config.yaml. This module contains only paths, APIs, field schemas, and
+other technical constants.
 """
 
 from pathlib import Path
@@ -46,51 +46,12 @@ WBD_HUC8_URL        = "https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlu
 NOAA_DROUGHT_BASE   = "https://www.ncei.noaa.gov/pub/data/cirs/climdiv"
 MACA_THREDDS_BASE   = "http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg_macav2metdata_"
 
-# Oceti Sakowin Nations Census TIGER NAME field values
-# These are the exact strings returned by the AIANNH shapefile NAME field
-OCETI_SAKOWIN_CENSUS_NAMES = [
-    "Pine Ridge",
-    "Rosebud",
-    "Standing Rock",
-    "Cheyenne River",
-    "Lower Brule",
-    "Crow Creek",
-    "Lake Traverse",
-    "Flandreau",
-]
-
-# Common name mapping: Census NAME to community-preferred name
+# Exact Census TIGER AIANNH name and project display name.
+STUDY_AREA_CENSUS_NAMES = ["Pine Ridge"]
 CENSUS_TO_COMMON = {
-    "Pine Ridge":     "Oglala Lakota",
-    "Rosebud":        "Sicangu Lakota (Rosebud)",
-    "Standing Rock":  "Standing Rock Sioux",
-    "Cheyenne River": "Cheyenne River Sioux",
-    "Lower Brule":    "Lower Brule Sioux",
-    "Crow Creek":     "Crow Creek Sioux",
-    "Lake Traverse":  "Sisseton Wahpeton Oyate",
-    "Flandreau":      "Flandreau Santee Sioux",
+    "Pine Ridge": "Oglala Lakota",
 }
 COMMON_TO_CENSUS = {v: k for k, v in CENSUS_TO_COMMON.items()}
-
-# Primary demonstration sites
-PRIMARY_NATIONS = ["Oglala Lakota", "Sicangu Lakota (Rosebud)"]
-
-# Approximate centroids for API queries (WGS84)
-NATION_CENTROIDS = {
-    "Oglala Lakota":            {"lat": 43.35, "lon": -102.09},
-    "Sicangu Lakota (Rosebud)": {"lat": 43.31, "lon": -100.64},
-    "Standing Rock Sioux":      {"lat": 45.83, "lon": -101.15},
-    "Cheyenne River Sioux":     {"lat": 45.07, "lon": -101.23},
-    "Lower Brule Sioux":        {"lat": 44.09, "lon": -99.77},
-    "Crow Creek Sioux":         {"lat": 44.13, "lon": -99.47},
-    "Sisseton Wahpeton Oyate":  {"lat": 45.64, "lon": -97.10},
-    "Flandreau Santee Sioux":   {"lat": 44.07, "lon": -96.57},
-}
-
-# Bounding boxes (WGS84: min_lon, min_lat, max_lon, max_lat)
-PINE_RIDGE_BBOX  = (-103.5, 42.5, -101.5, 43.8)
-ROSEBUD_BBOX     = (-101.5, 42.8,  -99.8, 43.6)
-OCETI_SAKOWIN_BBOX = (-104.5, 42.3, -96.4, 46.5)
 
 # USGS NWIS parameter codes
 # Used when requesting specific variables from the NWIS API
@@ -150,29 +111,3 @@ GOVERNANCE_REFS = {
     "ieee_2890":"https://standards.ieee.org/ieee/2890/10318/",
     "local_contexts": "https://localcontexts.org/",
 }
-
-# USGS streamflow gauges for Rosebud and Pine Ridge
-
-ROSEBUD_STREAMGAGES = {
-    "Antelope CR Near Mission SD":              "06463900",
-    "Little White River Near Rosebud SD":       "06449500",
-    "Keya Paha River Near Keyapaha SD":         "06464100",
-    "Keya Paha River at Wewela SD":             "06464500",
-    "Little White River Below White River SD":  "06450500",
-    "Black Pipe Creek Near Belvidere SD":       "06447230",
-    "White River Near White River SD":          "06447450",
-}
-
-PINE_RIDGE_STREAMGAGES = {
-    "White River Near NE-SD State Line":        "06445685",
-    "White River Near Oglala SD":               "06446000",
-    "Bear In The Lodge Creek Near Wanblee SD":  "06446700",
-    "White River Near Interior SD":             "06446500",
-    "White River Near Kadoka SD":               "06447000",
-    "Little White River Near Martin SD":        "06447500",
-    "Little White River Near Vetal SD":         "06449100",
-    "Lake Creek Below Refuge Near Tuthill SD":  "06449000",
-}
-
-# Combined: use when you want all gauges in one pull
-ALL_STREAMGAGES = {**ROSEBUD_STREAMGAGES, **PINE_RIDGE_STREAMGAGES}

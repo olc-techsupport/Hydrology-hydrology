@@ -38,6 +38,10 @@ dependencies:
   - jupyter>=1.0
   - jupyterlab>=4.0
   - ipykernel>=6.0
+  # Verification
+  - pytest>=8.0
+  - nbclient>=0.10
+  - nbformat>=5.10
   # Pipeline 
   - pip:
     - pydap==3.5.9         # OPeNDAP fallback engine

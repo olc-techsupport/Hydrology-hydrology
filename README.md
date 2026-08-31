@@ -1,123 +1,87 @@
-Tribal Water Monitoring                              
-Author: Lilly Jones, PhD, Daear Consulting, LLC                         
-Primary Demonstration Sites: Pine Ridge (Oglala Lakota)                           
+# Pine Ridge Hydrology
 
-License: Apache 2.0 license
+An educational and reproducible hydrology analysis series developed for the Oglala Lakota College Math and Science Department. The series focuses on the Pine Ridge Reservation and hydrologically relevant adjacent areas.
 
-Overview
-Water is the foundation of life and sovereignty for Indigenous communities. This repository provides a modular, reproducible water monitoring system designed specifically for Tribal Nations, built to be deployed locally, adapted to any Nation's data and priorities, and grounded in Indigenous data sovereignty frameworks.
+Author: Lilly Jones, PhD
 
-The system has two parallel tracks:
+Institution: Oglala Lakota College, Math and Science Department
 
-Analysis Track (notebooks) provide reproducible analysis of publicly available water data for education, research, and baseline characterization. Demonstrated at Pine Ridge and Rosebud Reservations.
+Funding: USDA National Institute of Food and Agriculture (NIFA)
 
-Operations Track (pipeline and dashboard) a deployable decision support tool that combines publicly available data with Tribal-collected field observations (well levels, water quality samples) to support day-to-day water management decisions.
+License: Apache License 2.0 (code; review of other materials is pending)
 
-Design Principles
-Decision support, not research output. The system is built to help someone make a real decision, which well to check first, whether to issue a water advisory, when drought conditions warrant restricting use, not to produce academic findings.
+## Current status
 
-Simple, explainable, auditable. Every indicator can be traced back to a specific value, a specific threshold, and a specific line of code. No black boxes. When someone asks "why is this well flagged critical?", you can point to the exact number and the exact rule.
+This repository currently provides seven analysis notebooks and supporting Python modules. It does **not** yet provide an operational monitoring pipeline, dashboard, emergency-alert system, or approved OST management thresholds. Figures and indicators are screening-level educational products unless and until OLC and OST reviewers approve another use.
 
-Offline-first. Public data is cached locally on first download. The pipeline and dashboard run without internet connectivity after that. Designed for Tribal offices with variable bandwidth.
+Specific OST Research Review Board (RRB) and OLC Institutional Review Board (IRB) wording remains under review. Interim review contact:
 
-Config-driven thresholds. All alert levels live in config/config.yaml. Sit with Tribal water staff, ask what counts as an emergency for their wells, and change one number so the entire system updates.
+> Camille Griffith, PhD
+>
+> Director, OST RRB and OLC IRB
+>
+> cgriffith@olc.edu
 
-Data sovereignty first. Tribal-collected data (well levels, water quality) stays local and is never committed to version control. Public federal data is clearly distinguished from Tribal operational data throughout.
+Listing this contact does not indicate approval of the current repository.
 
-Repository Structure
-tribal_water_monitoring/
-├── notebooks/
-│   ├── 01_watershed_territorial_context.ipynb
-│   ├── 02_groundwater_monitoring.ipynb
-│   ├── 03_surface_water_reliability.ipynb
-│   ├── 04_water_quality_context.ipynb
-│   ├── 05_drought_water_stress.ipynb
-│   ├── 06_compound_water_stress_index.ipynb
-│   └── 07_climate_projections_water.ipynb
-├── pipeline/
-│   ├── ingest.py            # Pull USGS public data automatically
-│   ├── groundwater.py       # Process well CSVs for trend detection and risk flags
-│   ├── water_quality.py     # Process WQ CSVs and threshold alerts
-│   ├── indicators.py        # Compound drought stage and action triggers
-│   └── run_pipeline.bat     # Windows: double-click to run everything
-├── app/
-│   └── app.py               # Streamlit decision dashboard
-├── src/
-│   ├── loaders.py           # Public data loaders (USGS NWIS, NHD, Census)
-│   ├── indicators.py        # Shared indicator computation functions
-│   ├── constants.py         # Site IDs, bounding boxes, CRS, thresholds
-│   └── sovereignty.py       # Data governance acknowledgment (OCAP®, CARE, FAIR, IEEE 2890)
-├── data/
-│   ├── raw/                 # GITIGNORED: Tribal operational data
-│   ├── templates/           # COMMITTED: blank Excel templates for field staff
-│   └── cache/               # GITIGNORED: downloaded public data
-├── config/
-│   └── config.yaml          
-├── docs/
-│   ├── data_sovereignty.md
-│   ├── glossary.md
-│   ├── data_intake_guide.md
-│   └── adaptation_guide.md
-├── environment.yml
-└── README.md
-Quick Start
-# Clone the repository
-git clone https://github.com/your-org/tribal_water_monitoring
-cd tribal_water_monitoring
+## Study scope
 
-# Create and activate the conda environment
+The territorial study area is the Pine Ridge Reservation. Hydrologic analyses may include selected upstream, downstream, or nearby sites needed to describe connected watersheds and aquifers. Those sites are documented as context and must not be represented as being within OST lands solely because they occur in the analysis envelope.
+
+All project scope is defined in [`config/config.yaml`](config/config.yaml), including the study-area name, bounding box, dates, climate division, monitoring sites, inclusion rationales, and screening thresholds.
+
+## Notebook series
+
+1. `01_watershed_regional_context.ipynb` — land, watersheds, and monitoring context
+2. `02_groundwater_monitoring.ipynb` — groundwater systems and monitoring gaps
+3. `03_surface_water_reliability.ipynb` — White River and tributary flow reliability
+4. `04_water_quality_context.ipynb` — public water-quality monitoring context
+5. `05_drought_water_stress.ipynb` — drought history and water stress
+6. `06_compound_water_stress_index.ipynb` — screening-level compound indicator
+7. `07_climate_projections_water.ipynb` — climate projections and implications
+
+The notebooks are ordered and may consume outputs produced by earlier notebooks.
+
+## Setup
+
+```powershell
 conda env create -f environment.yml
 conda activate tribal-water
-
-# Register the kernel for Jupyter
-python -m ipykernel install --user --name tribal-water \
-    --display-name "Python (tribal-water)"
-
-# Launch the analysis notebooks
+python -m ipykernel install --user --name tribal-water --display-name "Python (tribal-water)"
 jupyter lab notebooks/
-First time running the pipeline:
+```
 
-python pipeline/ingest.py      # download public data
-python pipeline/groundwater.py # process well data
-python pipeline/indicators.py  # compute drought stages
-streamlit run app/app.py       # launch dashboard
-Data
-Public data (downloaded automatically)
-All public data is downloaded at first run and cached to data/cache/. No data is committed to this repository.
+Run the notebooks from 01 through 07. Public downloads are cached under `data/cache/`, which is excluded from version control.
 
-Source	What	Used in
-USGS NWIS	Groundwater levels, streamflow, water quality	Notebooks 02–05, Pipeline
-Census TIGER AIANNH	Tribal boundaries	All notebooks
-USGS NHD	Stream network, watershed boundaries	Notebook 01, 03
-NOAA PDSI	Drought index	Notebook 05
-MACAv2	Climate projections	Notebook 07
-Tribal operational data (your data)
-Tribal-collected data lives in data/raw/ and is never committed. See data/templates/ for blank Excel templates:
+For an automated non-visual validation of the complete data path, run:
 
-groundwater_template.xlsx well level measurements
-water_quality_template.xlsx water quality sampling data
-See docs/data_intake_guide.md for field staff instructions.
+```powershell
+python scripts/execute_notebooks.py
+```
 
-Adapting for Your Nation
-This repository was built and demonstrated at Pine Ridge and Rosebud Reservations. To adapt it for another Tribal Nation:
+Pass `--include-plots` to execute visualization cells as well. The default skips plot cells so native geospatial rendering differences do not prevent validation of data loading, analysis, and table exports.
 
-Update config/config.yaml USGS site IDs, bounding box, thresholds
-Update src/constants.py Tribal boundary names, centroid coordinates
-Replace data/raw/ files your Nation's well and water quality data
-Run the pipeline everything else updates automatically
-See docs/adaptation_guide.md for step-by-step instructions.
+## Data and generated products
 
-Data Sovereignty
-This repository implements the following data governance frameworks:
+Public sources include USGS water data, the Water Quality Portal, Census TIGER AIANNH boundaries, the National Hydrography Dataset, the Watershed Boundary Dataset, NOAA climate-division drought data, and MACAv2 climate projections.
 
-OCAP® Ownership, Control, Access, Possession https://fnigc.ca/ocap-training/
-CARE Principles Collective Benefit, Authority to Control, Responsibility, Ethics https://www.gida-global.org/care
-FAIR Principles Findable, Accessible, Interoperable, Reusable https://www.go-fair.org/fair-principles/
-IEEE 2890-2025 Recommended Practice for Provenance of Indigenous Peoples' Data https://standards.ieee.org/ieee/2890/10318/
-Tribal-collected data (well levels, water quality samples) is governed by the collecting Nation under OCAP®. Public federal data (USGS, NOAA, Census) is distinguished from Tribal operational data throughout. Analysis results should be shared with the relevant Tribal Nation before publication or external distribution.
+Public source data are cached locally. Selected generated tables and figures may be committed to `outputs/` when they are deliberate release artifacts. Every released artifact should identify its source notebook, analysis period, spatial scope, and limitations. Cached downloads and any locally held OST operational data must not be committed.
 
-See docs/data_sovereignty.md for full discussion.
+No OST-collected operational dataset is included in this repository. Adding such data requires an approved governance, storage, access, and publication process.
 
-Oceti Sakowin Context
-The analysis notebooks in this repository focus on Pine Ridge (Oglala Lakota) and Rosebud (Sicangu Lakota) as primary demonstration sites, with broader context for all Oceti Sakowin Nations in South Dakota. The Oceti Sakowin (Seven Council Fires) are the collective Lakota, Dakota, and Nakota peoples. The term is used throughout the notebooks because it reflects the Nations' own name for themselves and their relationships to one another.
+## Interpretation limits
 
+- Census AIANNH geometry is used for reproducible statistical mapping; it is not a legal determination of jurisdiction or a substitute for OST-defined lands.
+- A public monitoring gap is not evidence that water or water use is absent.
+- Off-boundary sites provide hydrologic context and are not automatically OST sites.
+- Default thresholds are transparent screening values, not approved operational, regulatory, health, or emergency triggers.
+- Results require scientific and OLC/OST governance review before external use.
+
+See [`docs/data_sovereignty.md`](docs/data_sovereignty.md) for the draft data governance statement and [`docs/data_sources.md`](docs/data_sources.md) for source and product provenance expectations.
+
+## Deferred items
+
+- Final OST RRB/OLC IRB language and review status
+- Confirmation of locally appropriate governance frameworks and terminology
+- `CITATION.cff`, author order, institutional attribution, and NIFA award details
+- A dependency lock file after the analysis environment is finalized

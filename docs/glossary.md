@@ -1,6 +1,6 @@
 # Glossary
 
-Terms used in the `tribal_water_monitoring` repository and notebooks.
+Terms used in the OLC Pine Ridge hydrology repository and notebooks.
 Terms are grouped by domain. Scientific jargon is defined in plain language
 suitable for community members who are not hydrologists.
 
@@ -8,11 +8,11 @@ suitable for community members who are not hydrologists.
 
 **Aquifer**  
 A layer of rock or sediment underground that holds water and allows water
-to move through it. Most drinking water wells on Pine Ridge and Rosebud
+to move through it. Many drinking water wells on Pine Ridge
 draw from the Arikaree aquifer, part of the larger Ogallala (High Plains) Aquifer system.
 
 **Arikaree Aquifer**  
-The primary groundwater source for much of Pine Ridge and Rosebud. It
+The primary groundwater source for much of Pine Ridge. It
 is an ancient geologic formation of sand and gravel that holds water
 accumulated over thousands of years. Recharge (natural refilling) is
 very slow; water pumped out today may take decades or even centuries to be replaced.
@@ -41,7 +41,7 @@ deeper. This is the standard measurement from field surveys.
 
 **Ephemeral stream**  
 A stream that flows only during and immediately after precipitation.
-It is dry most of the year. Many draws and small drainages on Oceti
+It is dry most of the year. Many draws and small drainages in the Pine Ridge
 Sakowin lands are ephemeral.
 
 **Gaining reach**  
@@ -69,9 +69,9 @@ groundwater below. Losing reaches can help recharge aquifers.
 **Ogallala (High Plains) Aquifer**  
 The largest aquifer system in North America, underlying portions of
 eight Great Plains states. The Arikaree formation beneath Pine Ridge
-and Rosebud is part of this system. It is being depleted faster than
+is part of this system. It is being depleted faster than
 it recharges across much of its extent (outside of the northernmost
-units on Pine Ridge and Rosebud, where it is more stable).
+units on Pine Ridge, where it is more stable).
 
 **Perennial stream**  
 A stream that flows year-round. The White River is nominally perennial
@@ -103,7 +103,7 @@ Thresholds: -2 = moderate drought, -3 = severe drought, -4 = extreme drought.
 **NOAA Climate Division**  
 NOAA divides each state into climate divisions based on similar climate
 patterns. South Dakota has 9 divisions. Division 7 (Southwest) covers
-most of Pine Ridge; Division 6 (South Central) covers most of Rosebud.
+most of Pine Ridge. It is a regional proxy rather than a Reservation-specific observation.
 PDSI is reported at the division level.
 
 **RCP (Representative Concentration Pathway)**  
@@ -207,7 +207,7 @@ URL: https://waterdata.usgs.gov/nwis
 
 **NHD (National Hydrography Dataset)**  
 USGS mapping of streams, rivers, lakes, and water bodies across the US.
-Used in notebook 01 to show stream networks on Oceti Sakowin lands.
+Used in notebook 01 to show stream networks in the Pine Ridge hydrologic context.
 
 **WBD (Watershed Boundary Dataset)**  
 USGS mapping of watershed boundaries (HUC polygons). Used in notebook 01

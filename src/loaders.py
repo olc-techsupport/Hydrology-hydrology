@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 """
-loaders.py public data loaders for tribal_water_monitoring.
+Public data loaders for the OLC Pine Ridge hydrology series.
 
 All functions follow the same pattern:
   - Check cache first, download only if needed
@@ -47,7 +47,7 @@ from src.constants import (
     NHD_FLOWLINE_URL,
     WBD_HUC8_URL,
     NOAA_DROUGHT_BASE,
-    OCETI_SAKOWIN_CENSUS_NAMES,
+    STUDY_AREA_CENSUS_NAMES,
     CENSUS_TO_COMMON,
     NWIS_PARAMS,
 )
@@ -72,14 +72,14 @@ def load_tribal_boundaries(
 
     Parameters
     nation_names  : Census NAME field values to filter.
-                    Defaults to all eight Oceti Sakowin Nations.
+                    Defaults to the Pine Ridge Census boundary.
     force_refresh : Re-download even if cached.
 
     Returns
     GeoDataFrame with columns: NAME, common_name, area_km2, geometry
     """
     if nation_names is None:
-        nation_names = OCETI_SAKOWIN_CENSUS_NAMES
+        nation_names = STUDY_AREA_CENSUS_NAMES
 
     cache_path = CACHE_DIR/"tl_2023_us_aiannh.geojson"
 
