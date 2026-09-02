@@ -2,11 +2,10 @@
 
 An educational and reproducible hydrology analysis series developed for the Oglala Lakota College Math and Science Department. The series focuses on the Pine Ridge Reservation and hydrologically relevant adjacent areas.
 
-Author: Lilly Jones, PhD
-
-Institution: Oglala Lakota College, Math and Science Department
-
-Funding: USDA National Institute of Food and Agriculture (NIFA)
+Developed by: Lilly Jones, PhD, Daear Consulting LLC                                                                               
+Developed for: Oglala Lakota College                                                                                            
+Funding: This material was developed as part of a project funded by the USDA National Institute of Food and Agriculture (NIFA).                       
+Project role: Daear Consulting LLC developed the geospatial code, workflows, documentation, and instructional materials under contract to Oglala Lakota College.                                                                                                                      
 
 License: Apache License 2.0 (code; review of other materials is pending)
 
