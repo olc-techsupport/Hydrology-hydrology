@@ -9,6 +9,9 @@ Project role: Daear Consulting LLC developed the geospatial code, workflows, doc
 
 License: Apache License 2.0 (code; review of other materials is pending)
 
+## Data Sovereignty and Governance (draft under review)
+This repository contains workflows developed for use in support of Oglala Lakota College and Oglala Sioux Tribe–related research, education, and data activities. Public availability of code or documentation does not imply that Tribal data, knowledge, or derived information are open or unrestricted. Use of Tribal data and knowledge remains subject to applicable Tribal governance, permissions, protocols, and data sovereignty requirements.
+
 ## Current status
 
 This repository currently provides seven analysis notebooks and supporting Python modules. It does **not** yet provide an operational monitoring pipeline, dashboard, emergency-alert system, or approved OST management thresholds. Figures and indicators are screening-level educational products unless and until OLC and OST reviewers approve another use.
