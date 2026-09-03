@@ -1,4 +1,7 @@
 name: tribal-water
+# Compatible direct dependencies for development and teaching are declared
+# below. Before formal delivery, generate and retain a platform-specific
+# explicit lock after OLC validates the environment.
 channels:
   - conda-forge
   - defaults

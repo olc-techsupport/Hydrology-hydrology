@@ -27,3 +27,9 @@ For every committed release artifact, record:
 - review status.
 
 Generated outputs are not automatically release artifacts. Notebook execution should write to `outputs/`; maintainers should review the diff and commit only products intended for distribution.
+
+The repository-level artifact inventory is [`../outputs/provenance_manifest.csv`](../outputs/provenance_manifest.csv). Update the manifest in the same change that regenerates an artifact. Future retrieval dates should be recorded by the loader or notebook rather than inferred later.
+
+## Interpretation boundary
+
+The source registry describes provenance and known limitations. It must not assert why a monitoring gap exists, characterize a program's performance, identify a contaminant source, or make a health, regulatory, or management conclusion unless the claim is supported by cited evidence and has received the applicable review. Use neutral descriptions of coverage until then.

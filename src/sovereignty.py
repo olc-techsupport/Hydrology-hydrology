@@ -91,9 +91,10 @@ _DATA_SOURCES = {
         "steward": "US Geological Survey",
         "license": "Public domain (USGS)",
         "note":    (
-            "USGS groundwater monitoring well coverage is systematically sparse "
-            "on Tribal lands. This is a federal infrastructure equity gap, not "
-            "evidence of less groundwater. Tribal-collected well data fills this gap."
+            "This source represents the selected public monitoring record. "
+            "Sparse coverage is a limitation; it is not evidence that groundwater, "
+            "water use, local knowledge, or other monitoring is absent. Causes and "
+            "equity implications require additional evidence and review."
         ),
     },
     "usgs_nwis_water_quality": {
@@ -102,9 +103,9 @@ _DATA_SOURCES = {
         "steward": "USGS / EPA",
         "license": "Public domain",
         "note":    (
-            "Public water quality monitoring coverage on Tribal lands is sparse. "
-            "Tribal water quality sampling programs provide the ground-level data "
-            "that federal monitoring misses."
+            "This source represents selected public observations. Coverage and "
+            "reporting practices vary by organization and period; absence from "
+            "the query is not evidence that water, knowledge, or monitoring is absent."
         ),
     },
     "nhd_flowlines": {
@@ -141,27 +142,6 @@ _DATA_SOURCES = {
             "Abatzoglou, J.T. and Brown, T.J. (2012). A comparison of statistical "
             "downscaling methods suited for wildfire applications. "
             "Int. J. Climatology. doi:10.1002/joc.2312"
-        ),
-    },
-    "tribal_groundwater": {
-        "name":    "Tribal-collected groundwater level data",
-        "url":     None,
-        "steward": "Tribal Nation Water Resources Program",
-        "license": "Tribal governance: CARE applies",
-        "note":    (
-            "This data is owned and controlled by the Tribal Nation that "
-            "collected it. It is stored locally in data/raw/ and is never "
-            "committed to version control. Analysis results should be shared "
-            "with the Nation before any external distribution."
-        ),
-    },
-    "tribal_water_quality": {
-        "name":    "Tribal-collected water quality data",
-        "url":     None,
-        "steward": "Tribal Nation Water Resources Program",
-        "license": "Tribal governance: CARE applies",
-        "note":    (
-            "No OST operational data is included. See docs/data_sovereignty.md."
         ),
     },
 }

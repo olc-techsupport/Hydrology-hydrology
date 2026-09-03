@@ -24,3 +24,21 @@
 - [ ] Add `CITATION.cff` after attribution is approved.
 - [ ] Confirm which generated outputs should remain versioned.
 - [ ] Record approval status and date without implying endorsement before approval.
+
+## Instructional review
+
+- [ ] Confirm that the learning outcomes match the intended NIFA audience and award scope.
+- [ ] Pilot each notebook with at least one learner who is new to Python.
+- [ ] Review estimated timing, prerequisite language, and mixed-skill activities.
+- [ ] Check that prompts separate observations, interpretations, outside evidence, and decisions.
+- [ ] Remove or qualify causal, infrastructure, health, regulatory, and management claims not established by the analysis.
+- [ ] Confirm that contribution activities do not invite learners to add restricted data.
+- [ ] Record pilot feedback and resulting revisions.
+
+## Technical release checks
+
+- [ ] Run `python -m pytest` and `python scripts/execute_notebooks.py` in a clean environment.
+- [ ] Confirm every committed artifact is present in `outputs/provenance_manifest.csv`.
+- [ ] Update regeneration dates and review status in the manifest.
+- [ ] Review notebook outputs and figures for sensitive information before committing.
+- [ ] Create and document a resolved environment lock for the approved delivery platform.

@@ -16,6 +16,8 @@ This repository contains workflows developed for use in support of Oglala Lakota
 
 This repository currently provides seven analysis notebooks and supporting Python modules. It does **not** yet provide an operational monitoring pipeline, dashboard, emergency-alert system, or approved OST management thresholds. Figures and indicators are screening-level educational products unless and until OLC and OST reviewers approve another use.
 
+The notebooks are also a seven-session learning series. Each module includes learning objectives, a governance checkpoint, learner activities, and a structured method for separating observations from interpretations and decisions. See [`docs/learning_design.md`](docs/learning_design.md) and [`docs/facilitator_guide.md`](docs/facilitator_guide.md).
+
 Specific OST Research Review Board (RRB) and OLC Institutional Review Board (IRB) wording remains under review. Interim review contact:
 
 > Camille Griffith, PhD
@@ -44,6 +46,12 @@ All project scope is defined in [`config/config.yaml`](config/config.yaml), incl
 
 The notebooks are ordered and may consume outputs produced by earlier notebooks.
 
+## Learning outcomes
+
+Learners use a shared Python environment, trace public data into generated artifacts, inspect data quality and spatial coverage, explain transformations and limitations, distinguish screening results from approved decisions, and contribute a small reproducibility improvement through peer review. Detailed outcomes and completion evidence are in [`docs/learning_design.md`](docs/learning_design.md).
+
+Each notebook is designed for approximately 75–100 minutes. Instructors should review the [`facilitator guide`](docs/facilitator_guide.md) before delivery, particularly its governance pause conditions and interpretation protocol.
+
 ## Setup
 
 ```powershell
@@ -69,6 +77,8 @@ Public sources include USGS water data, the Water Quality Portal, Census TIGER A
 
 Public source data are cached locally. Selected generated tables and figures may be committed to `outputs/` when they are deliberate release artifacts. Every released artifact should identify its source notebook, analysis period, spatial scope, and limitations. Cached downloads and any locally held OST operational data must not be committed.
 
+The current committed release candidates are indexed in [`outputs/provenance_manifest.csv`](outputs/provenance_manifest.csv). Update the manifest whenever an artifact is regenerated or its review status changes.
+
 No OST-collected operational dataset is included in this repository. Adding such data requires an approved governance, storage, access, and publication process.
 
 ## Interpretation limits
@@ -79,11 +89,13 @@ No OST-collected operational dataset is included in this repository. Adding such
 - Default thresholds are transparent screening values, not approved operational, regulatory, health, or emergency triggers.
 - Results require scientific and OLC/OST governance review before external use.
 
+Notebook prompts follow an observation–interpretation–evidence–authority protocol. A monitoring gap, statistical association, threshold flag, or model scenario must not be presented as a causal, regulatory, health, policy, or community conclusion without additional evidence and authorized review.
+
 See [`docs/data_sovereignty.md`](docs/data_sovereignty.md) for the draft data governance statement and [`docs/data_sources.md`](docs/data_sources.md) for source and product provenance expectations.
 
 ## Deferred items
 
 - Final OST RRB/OLC IRB language and review status
 - Confirmation of locally appropriate governance frameworks and terminology
-- `CITATION.cff`, author order, institutional attribution, and NIFA award details
+- Final author order, institutional attribution, copyright ownership, and NIFA award name and number in `CITATION.cff`
 - A dependency lock file after the analysis environment is finalized

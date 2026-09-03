@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this material, please cite it as below."
+message: "Citation metadata is provisional pending OLC approval of attribution and complete NIFA award details."
 
 title: "Hydrology: Geospatial Analysis for Oglala Lakota College"
 
@@ -14,6 +14,11 @@ abstract: >
   A reproducible geospatial hydrology training and analysis series
   developed by Daear Consulting LLC for Oglala Lakota College under
   a USDA National Institute of Food and Agriculture (NIFA) funded project.
+
+notes: >
+  Author order, OLC departmental attribution, copyright ownership, and the
+  complete NIFA award name and number remain pending review. This file does
+  not imply OLC or OST approval of the repository's findings.
 
 license: Apache-2.0
 
