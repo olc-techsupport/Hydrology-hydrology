@@ -57,3 +57,7 @@ Assessment is artifact-based rather than syntax-based. Learners produce a short 
 ## Review and revision
 
 The learning design should be reviewed after each delivery. Record where learners stopped, which terms required explanation, which cells failed, and which interpretations were routinely overstated. Revise the notebooks and facilitator guide rather than treating those difficulties as learner deficits.
+
+## Ownership of instructional development
+
+These learning sections are scaffolding for adaptation. Daear Consulting LLC developed the geospatial code, workflows, and documentation under contract to Oglala Lakota College. OLC will develop the full instructional materials, facilitation choices, and curriculum used with its learners.

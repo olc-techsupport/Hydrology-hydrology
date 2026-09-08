@@ -5,7 +5,7 @@ An educational and reproducible hydrology analysis series developed for the Ogla
 Developed by: Lilly Jones, PhD, Daear Consulting LLC                                                                               
 Developed for: Oglala Lakota College                                                                                            
 Funding: This material was developed as part of a project funded by the USDA National Institute of Food and Agriculture (NIFA).                       
-Project role: Daear Consulting LLC developed the geospatial code, workflows, documentation, and instructional materials under contract to Oglala Lakota College.                                                                                                                      
+Project role: Daear Consulting LLC developed the geospatial code, workflows, and documentation under contract to Oglala Lakota College.                                                                                                                      
 
 License: Apache License 2.0 (code; review of other materials is pending)
 
@@ -99,3 +99,7 @@ See [`docs/data_sovereignty.md`](docs/data_sovereignty.md) for the draft data go
 - Confirmation of locally appropriate governance frameworks and terminology
 - Final author order, institutional attribution, copyright ownership, and NIFA award name and number in `CITATION.cff`
 - A dependency lock file after the analysis environment is finalized
+
+## Project copyright
+
+Copyright (c) 2026 Daear Consulting, LLC. See [COPYRIGHT](COPYRIGHT) and [LICENSE](LICENSE).
